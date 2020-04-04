@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ServiceStation.Classes
+﻿namespace ServiceStation.Models
 {
     /// <summary>
     /// Тип работ
