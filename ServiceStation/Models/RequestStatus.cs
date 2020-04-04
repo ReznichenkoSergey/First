@@ -4,10 +4,9 @@ using System.Text;
 
 namespace ServiceStation.Models
 {
-    public enum StationWorkType
+    public enum RequestStatus
     {
-        ChangeOilFluid,
-        ChangeOilFilter,
-        Washing
+        IsActive,
+        IsDone,
     }
 }

@@ -5,8 +5,12 @@ using System.Text;
 
 namespace ServiceStation.Models
 {
-    public interface IServiceProc
+    public interface IServiceProcedure
     {
-        void CanIService(ServiceStationUnit serviceStationUnit);
+        void SelectStation(ServiceStationUnit serviceStation);
+
+        void AddWorkRequest(WorkRequest workRequest);
+
+        void AddRangeWorkRequest(List<WorkRequest> workRequest);
     }
 }

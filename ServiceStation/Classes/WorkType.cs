@@ -2,28 +2,28 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ServiceStation.Models
+namespace ServiceStation.Classes
 {
     /// <summary>
-    /// Тип станции
+    /// Тип работ
     /// </summary>
-    public enum StationType
+    public enum WorkType
     {
         /// <summary>
-        /// Масло
+        /// Замена масла
         /// </summary>
-        ServiceOil,
+        ChangeOil,
         /// <summary>
-        /// Мойка
+        /// Мойка машины
         /// </summary>
         CarWash,
         /// <summary>
-        /// Топливо
+        /// Диагностика двигателя
         /// </summary>
-        ServiceEngine,
+        CheckEngine,
         /// <summary>
-        /// Развал
+        /// Развал/схождение
         /// </summary>
-        AccelerationService
+        CheckAcceleration
     }
 }

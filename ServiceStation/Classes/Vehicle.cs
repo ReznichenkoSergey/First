@@ -1,42 +1,94 @@
 ﻿using ServiceStation.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using static ServiceStation.Classes.Extentions;
 
 namespace ServiceStation.Classes
 {
-    public class Vehicle: IServiceProc
-    {
-        public string Name { get; private set; }
+    public class Vehicle : Autocar, IServiceProcedure
+    {        
+        /// <summary>
+        /// Коды заявок
+        /// </summary>
+        public List<Guid> WorkRequestCodeList;
 
-        public List<ServiceStationUnit> ServiceStationUnits { get; private set; }
+        /// <summary>
+        /// Выбранное СТО
+        /// </summary>
+        public ServiceStationUnit ServiceStation { get; private set; }
 
-        public Vehicle(string name)
+        public Vehicle(string manufacturedCompany, string modelCipher) :base(manufacturedCompany, modelCipher)
         {
-            this.Name = name;
-            this.ServiceStationUnits = new List<ServiceStationUnit>();
+            WorkRequestCodeList = new List<Guid>();
         }
 
-        
-        public void AddService(ServiceStationUnit serviceStationUnits)
+        /// <summary>
+        /// Добавить СТО
+        /// </summary>
+        /// <param name="serviceStation"></param>
+        public void SelectStation(ServiceStationUnit serviceStation)
         {
-            serviceStationUnits.ReadyToWork += ServiceStation_ReadyToWork;
-            this.ServiceStationUnits.Add(serviceStationUnits);
+            ServiceStation = serviceStation;
+            ServiceStation.WorkDone += ServiceStation_WorkDone;
+            ServiceStation.RequestDone += ServiceStation_RequestDone;
         }
 
-        public void CanIService(ServiceStationUnit serviceStationUnit)
+        private void ServiceStation_RequestDone(object sender, OnServiceEventArgs e)
         {
-            serviceStationUnit.CarServe();
+            if (WorkRequestCodeList.Contains(e.Code))
+            {
+                WorkRequest workRequest = ServiceStation.GetWorkRequestValues(e.Code);
+                PrintToConsole($"Клиент: заявка {workRequest.WorkType} обработана!");
+            }
         }
 
-        public void Subscribe(ServiceStationUnit serviceStation)
+        private void ServiceStation_WorkDone(Vehicle vehicle)
         {
-            serviceStation.ReadyToWork += ServiceStation_ReadyToWork;
+            if(vehicle.Equals(this))
+                PrintToConsole($"СТО: Ваши работы выполнены!", true);
         }
 
-        private void ServiceStation_ReadyToWork(object sender, OnServiceEventArgs e)
+        /// <summary>
+        /// Добавить заявку
+        /// </summary>
+        /// <param name="workRequest"></param>
+        public void AddWorkRequest(WorkRequest workRequest)
         {
-            Console.WriteLine($"The station {e.StationType} is {e.IsReady}");
+            if (ServiceStation != null)
+            {
+                if (!ServiceStation.WorkRequestExists(workRequest.WorkType, this))
+                {
+                    ServiceStation.AddWorkRequest(workRequest);
+                    //
+                    this.WorkRequestCodeList.Add(workRequest.Code);
+                }
+                else
+                    PrintToConsole($"Заявка {workRequest.WorkType} существует!", true);
+            }
+            else
+                throw new NullReferenceException("СТО не выбрано!");
         }
+
+        /// <summary>
+        /// Добавить список заявок
+        /// </summary>
+        /// <param name="workRequest"></param>
+        public void AddRangeWorkRequest(List<WorkRequest> workRequest)
+        {
+            ServiceStation.AddRangeWorkRequest(workRequest);
+            //
+            this.WorkRequestCodeList.AddRange(workRequest.Select(x => x.Code));
+        }
+
+        /// <summary>
+        /// Начать выполнение работ
+        /// </summary>
+        public void StartWorking()
+        {
+            ServiceStation.ExecuteWorkRequests(WorkRequestCodeList);
+        }
+
     }
 }

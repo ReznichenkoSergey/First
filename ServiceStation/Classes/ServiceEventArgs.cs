@@ -7,14 +7,20 @@ namespace ServiceStation.Classes
 {
     public class OnServiceEventArgs : EventArgs
     {
-        public bool IsReady { get; set; }
+        /// <summary>
+        /// Код заявки
+        /// </summary>
+        public Guid Code { get; private set; }
 
-        public StationType StationType { get; set; }
+        /// <summary>
+        /// Тип работ
+        /// </summary>
+        public WorkType WorkType { get; set; }
 
-        public OnServiceEventArgs(StationType stationType, bool isReady)
+        public OnServiceEventArgs(WorkType workType, Guid code)
         {
-            this.IsReady = isReady;
-            this.StationType = stationType;
+            Code = code;
+            WorkType = workType;
         }
     }
 }
