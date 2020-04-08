@@ -88,7 +88,7 @@ namespace ServiceStation
             {
                 PrintToConsole($"Ошибка: {vehicle2.GetFullName()} {ex.Message}");
             }
-
+            /*
             //Выставляем счета для клиента
             PrintToConsole($"Перечень работ по {vehicle.GetFullName()}",false, ConsoleColor.Green);
             Report.PrintVehicleReport(vehicle);
@@ -109,7 +109,7 @@ namespace ServiceStation
             //Подводим итог работы СТО
             PrintToConsole($"Перечень всех выполненных работ СТО", false, ConsoleColor.Green);
             Report.PrintStationReport(service);
-
+            */
             Console.ReadLine();
         }
 
