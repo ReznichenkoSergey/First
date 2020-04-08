@@ -6,14 +6,14 @@ namespace ServiceStation.Classes
 {
     public abstract class Autocar
     {
-        public string ManufacturedCompany { get; private set; }
+        public AutoCompany ManufacturedCompany { get; private set; }
         public string ModelCipher { get; private set; }
 
         public EngineTypes EngineType { get; private set; }
 
         public decimal EngineVolume { get; private set; }
 
-        public Autocar(string manufacturedCompany, string modelCipher, EngineTypes engineTypes = EngineTypes.Gas, decimal engineVolume = 2)
+        public Autocar(AutoCompany manufacturedCompany, string modelCipher, EngineTypes engineTypes = EngineTypes.Gas, decimal engineVolume = 2)
         {
             ManufacturedCompany = manufacturedCompany;
             ModelCipher = modelCipher;
