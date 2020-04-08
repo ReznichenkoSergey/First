@@ -105,7 +105,7 @@ namespace ServiceStation
             PrintToConsole($"Перечень работ по {vehicle4.GetFullName()}", false, ConsoleColor.Green);
             Report.PrintVehicleReport(vehicle4);
             Console.WriteLine();
-
+            
             //Подводим итог работы СТО
             PrintToConsole($"Перечень всех выполненных работ СТО", false, ConsoleColor.Green);
             Report.PrintStationReport(service);
