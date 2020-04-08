@@ -22,7 +22,7 @@ namespace ServiceStation
             ServiceStationUnit service = new ServiceStationUnit(workrooms);
 
             Console.WriteLine();
-            Vehicle vehicle = new Vehicle("Mazda", "CX5");
+            Vehicle vehicle = new Vehicle("Mazda", "CX5", EngineTypes.Diesel, 2m);
             try
             {
                 vehicle.SelectStation(service);
@@ -38,7 +38,7 @@ namespace ServiceStation
                 PrintToConsole($"Ошибка: {vehicle.GetFullName()} {ex.Message}");
             }
 
-            Vehicle vehicle2 = new Vehicle("Toyota", "Camri");
+            Vehicle vehicle2 = new Vehicle("Toyota", "Camri", EngineTypes.Gas, 3.5m);
             try
             {
                 vehicle2.SelectStation(service);
@@ -56,7 +56,7 @@ namespace ServiceStation
             }
 
             Console.WriteLine();
-            Vehicle vehicle3 = new Vehicle("Nissan", "Almera");
+            Vehicle vehicle3 = new Vehicle("Nissan", "Almera", EngineTypes.Gas, 1.5m);
             try
             {
                 vehicle3.SelectStation(service);
@@ -72,7 +72,7 @@ namespace ServiceStation
             }
 
             Console.WriteLine();
-            Vehicle vehicle4 = new Vehicle("Nissan", "Almera");
+            Vehicle vehicle4 = new Vehicle("Suzuki", "Vitara", EngineTypes.Gas, 2.0m);
             try
             {
                 vehicle4.SelectStation(service);

@@ -11,11 +11,14 @@ namespace ServiceStation.Classes
 
         public EngineTypes EngineType { get; private set; }
 
-        public Autocar(string manufacturedCompany, string modelCipher, EngineTypes engineTypes)
+        public decimal EngineVolume { get; private set; }
+
+        public Autocar(string manufacturedCompany, string modelCipher, EngineTypes engineTypes = EngineTypes.Gas, decimal engineVolume = 2)
         {
             ManufacturedCompany = manufacturedCompany;
             ModelCipher = modelCipher;
             EngineType = engineTypes;
+            EngineVolume = engineVolume;
         }
 
         public virtual string GetFullName()
