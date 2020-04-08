@@ -44,9 +44,9 @@ namespace ServiceStation
                 vehicle2.SelectStation(service);
                 vehicle2.AddRangeWorkRequest(new List<WorkRequest>
                 {
-                    new WorkRequest(WorkType.CarWash, vehicle),
-                    new WorkRequest(WorkType.CheckEngine, vehicle),
-                    new WorkRequest(WorkType.CheckAcceleration, vehicle)
+                    new WorkRequest(WorkType.CarWash, vehicle2),
+                    new WorkRequest(WorkType.CheckEngine, vehicle2),
+                    new WorkRequest(WorkType.CheckAcceleration, vehicle2)
                 });
                 vehicle2.StartWorking();
             }
@@ -62,9 +62,27 @@ namespace ServiceStation
                 vehicle3.SelectStation(service);
                 vehicle3.AddRangeWorkRequest(new List<WorkRequest>
                 {
-                    new WorkRequest(WorkType.ChangeOil, vehicle)
+                    new WorkRequest(WorkType.ChangeOil, vehicle3)
                 });
                 vehicle3.StartWorking();
+            }
+            catch (Exception ex)
+            {
+                PrintToConsole($"Ошибка: {vehicle2.GetFullName()} {ex.Message}");
+            }
+
+            Console.WriteLine();
+            Vehicle vehicle4 = new Vehicle("Nissan", "Almera");
+            try
+            {
+                vehicle4.SelectStation(service);
+                vehicle4.AddRangeWorkRequest(new List<WorkRequest>
+                {
+                    new WorkRequest(WorkType.ChangeOil, vehicle4),
+                    new WorkRequest(WorkType.CheckEngine, vehicle4),
+                    new WorkRequest(WorkType.CheckAcceleration, vehicle4)
+                });
+                vehicle4.StartWorking();
             }
             catch (Exception ex)
             {
@@ -82,6 +100,10 @@ namespace ServiceStation
 
             PrintToConsole($"Перечень работ по {vehicle3.GetFullName()}", false, ConsoleColor.Green);
             Report.PrintVehicleReport(vehicle3);
+            Console.WriteLine();
+
+            PrintToConsole($"Перечень работ по {vehicle4.GetFullName()}", false, ConsoleColor.Green);
+            Report.PrintVehicleReport(vehicle4);
             Console.WriteLine();
 
             //Подводим итог работы СТО
