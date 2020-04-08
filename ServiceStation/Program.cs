@@ -71,23 +71,6 @@ namespace ServiceStation
                 PrintToConsole($"Ошибка: {vehicle2.GetFullName()} {ex.Message}");
             }
 
-            Console.WriteLine();
-            Vehicle vehicle4 = new Vehicle("Suzuki", "Vitara", EngineTypes.Gas, 2.0m);
-            try
-            {
-                vehicle4.SelectStation(service);
-                vehicle4.AddRangeWorkRequest(new List<WorkRequest>
-                {
-                    new WorkRequest(WorkType.ChangeOil, vehicle4),
-                    new WorkRequest(WorkType.CheckEngine, vehicle4),
-                    new WorkRequest(WorkType.CheckAcceleration, vehicle4)
-                });
-                vehicle4.StartWorking();
-            }
-            catch (Exception ex)
-            {
-                PrintToConsole($"Ошибка: {vehicle2.GetFullName()} {ex.Message}");
-            }
 
             //Выставляем счета для клиента
             PrintToConsole($"Перечень работ по {vehicle.GetFullName()}",false, ConsoleColor.Green);
@@ -100,10 +83,6 @@ namespace ServiceStation
 
             PrintToConsole($"Перечень работ по {vehicle3.GetFullName()}", false, ConsoleColor.Green);
             Report.PrintVehicleReport(vehicle3);
-            Console.WriteLine();
-
-            PrintToConsole($"Перечень работ по {vehicle4.GetFullName()}", false, ConsoleColor.Green);
-            Report.PrintVehicleReport(vehicle4);
             Console.WriteLine();
 
             //Подводим итог работы СТО
