@@ -22,7 +22,7 @@ namespace ServiceStation
             ServiceStationUnit service = new ServiceStationUnit(workrooms);
 
             Console.WriteLine();
-            Vehicle vehicle = new Vehicle("Mazda", "CX5");
+            Vehicle vehicle = new Vehicle("Mazda", "CX5", EngineTypes.Diesel, 2m);
             try
             {
                 vehicle.SelectStation(service);
@@ -38,7 +38,7 @@ namespace ServiceStation
                 PrintToConsole($"Ошибка: {vehicle.GetFullName()} {ex.Message}");
             }
 
-            Vehicle vehicle2 = new Vehicle("Toyota", "Camri");
+            Vehicle vehicle2 = new Vehicle("Toyota", "Camri", EngineTypes.Gas, 3.5m);
             try
             {
                 vehicle2.SelectStation(service);
@@ -56,7 +56,7 @@ namespace ServiceStation
             }
 
             Console.WriteLine();
-            Vehicle vehicle3 = new Vehicle("Nissan", "Almera");
+            Vehicle vehicle3 = new Vehicle("Nissan", "Almera", EngineTypes.Gas, 1.5m);
             try
             {
                 vehicle3.SelectStation(service);
@@ -71,24 +71,7 @@ namespace ServiceStation
                 PrintToConsole($"Ошибка: {vehicle2.GetFullName()} {ex.Message}");
             }
 
-            Console.WriteLine();
-            Vehicle vehicle4 = new Vehicle("Nissan", "Almera");
-            try
-            {
-                vehicle4.SelectStation(service);
-                vehicle4.AddRangeWorkRequest(new List<WorkRequest>
-                {
-                    new WorkRequest(WorkType.ChangeOil, vehicle4),
-                    new WorkRequest(WorkType.CheckEngine, vehicle4),
-                    new WorkRequest(WorkType.CheckAcceleration, vehicle4)
-                });
-                vehicle4.StartWorking();
-            }
-            catch (Exception ex)
-            {
-                PrintToConsole($"Ошибка: {vehicle2.GetFullName()} {ex.Message}");
-            }
-            /*
+
             //Выставляем счета для клиента
             PrintToConsole($"Перечень работ по {vehicle.GetFullName()}",false, ConsoleColor.Green);
             Report.PrintVehicleReport(vehicle);
@@ -102,14 +85,10 @@ namespace ServiceStation
             Report.PrintVehicleReport(vehicle3);
             Console.WriteLine();
 
-            PrintToConsole($"Перечень работ по {vehicle4.GetFullName()}", false, ConsoleColor.Green);
-            Report.PrintVehicleReport(vehicle4);
-            Console.WriteLine();
-            
             //Подводим итог работы СТО
             PrintToConsole($"Перечень всех выполненных работ СТО", false, ConsoleColor.Green);
             Report.PrintStationReport(service);
-            */
+
             Console.ReadLine();
         }
 
