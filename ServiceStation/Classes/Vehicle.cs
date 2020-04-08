@@ -19,7 +19,7 @@ namespace ServiceStation.Classes
         /// </summary>
         public ServiceStationUnit ServiceStation { get; private set; }
 
-        public Vehicle(string manufacturedCompany, string modelCipher) :base(manufacturedCompany, modelCipher)
+        public Vehicle(string manufacturedCompany, string modelCipher, EngineTypes engineTypes) :base(manufacturedCompany, modelCipher, EngineTypes engineTypes)
         {
             WorkRequestCodeList = new List<Guid>();
         }

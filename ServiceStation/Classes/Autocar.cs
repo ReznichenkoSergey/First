@@ -9,10 +9,13 @@ namespace ServiceStation.Classes
         public string ManufacturedCompany { get; private set; }
         public string ModelCipher { get; private set; }
 
-        public Autocar(string manufacturedCompany, string modelCipher)
+        public EngineTypes EngineType { get; private set; }
+
+        public Autocar(string manufacturedCompany, string modelCipher, EngineTypes engineTypes)
         {
             ManufacturedCompany = manufacturedCompany;
             ModelCipher = modelCipher;
+            EngineType = engineTypes;
         }
 
         public virtual string GetFullName()
